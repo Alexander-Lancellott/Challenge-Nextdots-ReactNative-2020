@@ -6,6 +6,7 @@ const {
   goBackButton,
   closeButton,
   headerBackground,
+  safeArea,
 } = theme.color;
 const styles = StyleSheet.create({
   load: {
@@ -40,6 +41,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: headerBackground,
+  },
+  safeArea: {
+    backgroundColor: safeArea,
   },
   background: {
     flexDirection: 'column',

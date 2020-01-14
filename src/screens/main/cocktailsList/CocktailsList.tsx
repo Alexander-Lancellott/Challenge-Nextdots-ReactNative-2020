@@ -5,6 +5,8 @@ import {
   ImageBackground,
   ActivityIndicator,
   TextInput,
+  Platform,
+  SafeAreaView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Field, reduxForm, InjectedFormProps} from 'redux-form';
@@ -85,45 +87,51 @@ class CocktailsList extends React.Component<Props, State> {
     } = this.props;
     const {show} = this.state;
     return (
-      <ImageBackground source={Background} style={styles.background}>
-        <View style={styles.headerContainer}>
-          <StatusBar hidden={true} />
-          <View style={styles.goBackButtonContainer}>
-            <Icon.Button
-              name="left"
-              size={40}
-              iconStyle={styles.goBackButton}
-              backgroundColor={styles.goBackButton.backgroundColor}
-              onPress={() => navigation.goBack()}
+      <SafeAreaView style={styles.safeArea}>
+        <ImageBackground source={Background} style={styles.background}>
+          <View style={styles.headerContainer}>
+            <StatusBar hidden={true} />
+            <View style={styles.goBackButtonContainer}>
+              <Icon.Button
+                name="left"
+                size={40}
+                iconStyle={styles.goBackButton}
+                backgroundColor={styles.goBackButton.backgroundColor}
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+            <Field
+              name="cocktail"
+              component={this.renderInput}
+              onChange={this.changeTextHandler}
             />
+            <Icon name="search1" size={26} style={styles.searchIcon} />
+            <View style={styles.closeButtonContainer}>
+              <Icon.Button
+                name="closecircle"
+                size={33}
+                iconStyle={styles.closeButton}
+                onPress={this.cancelState}
+                backgroundColor={styles.closeButton.backgroundColor}
+              />
+            </View>
           </View>
-          <Field
-            name="cocktail"
-            component={this.renderInput}
-            onChange={this.changeTextHandler}
-          />
-          <Icon name="search1" size={26} style={styles.searchIcon} />
-          <View style={styles.closeButtonContainer}>
-            <Icon.Button
-              name="closecircle"
-              size={33}
-              iconStyle={styles.closeButton}
-              onPress={this.cancelState}
-              backgroundColor={styles.closeButton.backgroundColor}
+          {fetchIsLoading ? (
+            <ActivityIndicator
+              size={Platform.OS === 'ios' ? 'large' : 60}
+              color="#ffffff"
+              style={styles.load}
             />
-          </View>
-        </View>
-        {fetchIsLoading ? (
-          <ActivityIndicator size={60} color="#ffffff" style={styles.load} />
-        ) : (
-          <CocktailsRenderer
-            show={show}
-            inputText={inputText}
-            data={data}
-            fetchError={fetchError}
-          />
-        )}
-      </ImageBackground>
+          ) : (
+            <CocktailsRenderer
+              show={show}
+              inputText={inputText}
+              data={data}
+              fetchError={fetchError}
+            />
+          )}
+        </ImageBackground>
+      </SafeAreaView>
     );
   }
 }

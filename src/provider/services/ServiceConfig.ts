@@ -9,7 +9,7 @@ export default class ServiceConfig {
     return `${config.API_URL}/search.php?s=`;
   }
 
-  static get coctails(): string {
+  static get cocktails(): string {
     return `${ServiceConfig.endpoint}`;
   }
 

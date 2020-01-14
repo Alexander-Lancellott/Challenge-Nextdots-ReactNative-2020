@@ -12,6 +12,7 @@ const color = {
   homeTextFinder: 'white',
   subLogoTextCocktail: 'black',
   subLogoTextFinder: 'white',
+  safeArea: 'black',
 };
 
 export const theme = {
