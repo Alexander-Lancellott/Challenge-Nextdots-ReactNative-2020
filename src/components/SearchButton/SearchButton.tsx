@@ -4,7 +4,7 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 interface Props {
-  onPress: any;
+  onPress: () => void;
 }
 
 const SearchButton = (props: Props) => {
