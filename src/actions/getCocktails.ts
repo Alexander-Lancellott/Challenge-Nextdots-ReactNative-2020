@@ -32,7 +32,7 @@ export function getCocktails(data: string, fetchIsLoading: boolean) {
     try {
       if (!fetchIsLoading) {
         dispatch(getCocktailsStart(data));
-        let cocktails: any = await CocktailService.getCocktails(data);
+        const cocktails: any = await CocktailService.getCocktails(data);
         dispatch(getCocktailsSuccess(cocktails));
       }
     } catch (err) {
