@@ -24,6 +24,7 @@ const cocktailsReducer = (state = initialState, action: any) => {
     case GET_COCKTAILS_START:
       return {
         ...state,
+        fetchError: null,
         fetchIsLoading: true,
         inputText: data,
       };
