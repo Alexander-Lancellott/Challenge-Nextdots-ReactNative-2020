@@ -27,16 +27,12 @@ export const getCocktailsError = (err: string) => {
   };
 };
 
-export function getCocktails(
-  data: string,
-  fetchIsLoading: boolean,
-  val: string,
-) {
+export function getCocktails(data: string, fetchIsLoading: boolean) {
   return async (dispatch: Function) => {
     try {
       if (!fetchIsLoading) {
         dispatch(getCocktailsStart(data));
-        let cocktails: any = await CocktailService.getCocktails(val);
+        let cocktails: any = await CocktailService.getCocktails(data);
         dispatch(getCocktailsSuccess(cocktails));
       }
     } catch (err) {

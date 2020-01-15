@@ -43,20 +43,16 @@ class CocktailsList extends React.Component<Props, State> {
 
   changeTextHandler = (val: any) => {
     const {getCocktails, fetchIsLoading} = this.props;
-    let text = () => {
-      if (val.length >= 3 && val.trim()) {
-        this.setState({
-          show: true,
-        });
-        getCocktails(val, fetchIsLoading, val);
-      } else {
-        this.setState({
-          show: false,
-        });
-      }
-      clearTimeout(timer);
-    };
-    const timer = setTimeout(() => text(), 450);
+    if (val.trim().length >= 3) {
+      this.setState({
+        show: true,
+      });
+      getCocktails(val, fetchIsLoading);
+    } else {
+      this.setState({
+        show: false,
+      });
+    }
   };
 
   cancelState = () => {
@@ -147,8 +143,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    getCocktails: (data: string, fetchIsLoading: boolean, val: string) =>
-      dispatch(getCocktails(data, fetchIsLoading, val)),
+    getCocktails: (data: string, fetchIsLoading: boolean) =>
+      dispatch(getCocktails(data, fetchIsLoading)),
   };
 };
 
