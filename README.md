@@ -15,6 +15,12 @@
 
 Have an android emulator running then execute `$ yarn run android`, or simply build the app from Android Studio
 
+## Launch iOS
+
+`$ yarn run ios`, or from XCode opening the workspace file
+
+- To launch an iPhone 11 Pro Max automatically, you may also use `$ yarn run ios-11`
+
 ## Libraries Used
 
 - React Native: v0.61.1
