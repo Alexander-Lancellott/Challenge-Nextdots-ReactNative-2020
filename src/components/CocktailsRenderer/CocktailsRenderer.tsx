@@ -15,7 +15,8 @@ const CocktailsRenderer = (props: Props) => {
   let {data, show, inputText, fetchError} = props;
   if (fetchError) {
     return <DefaultText value={fetchError.toString()} />;
-  } else if (data && show === true) {
+  }
+  if (data && show === true) {
     if (data.drinks === null) {
       return (
         <DefaultText value={`No results where found for "${inputText}"`} />
@@ -37,9 +38,8 @@ const CocktailsRenderer = (props: Props) => {
         )}
       />
     );
-  } else {
-    return <SubLogo />;
   }
+  return <SubLogo />;
 };
 
 export default CocktailsRenderer;
