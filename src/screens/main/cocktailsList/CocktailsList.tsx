@@ -11,6 +11,7 @@ import {
 import {connect} from 'react-redux';
 import {Field, reduxForm, InjectedFormProps} from 'redux-form';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {compose} from 'redux';
 
 import styles from './styles';
 import {Background} from '../../../assets/images';
@@ -148,11 +149,12 @@ const mapDispatchToProps = (dispatch: Function) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
   reduxForm<Values, ConnectProps>({
     form: 'CocktailInput',
-  })(CocktailsList),
-);
+  }),
+)(CocktailsList);
