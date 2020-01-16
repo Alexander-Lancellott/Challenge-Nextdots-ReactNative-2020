@@ -86,7 +86,7 @@ class CocktailsList extends React.Component<Props, State> {
       <SafeAreaView style={styles.safeArea}>
         <ImageBackground source={Background} style={styles.background}>
           <View style={styles.headerContainer}>
-            <StatusBar hidden={true} />
+            <StatusBar hidden />
             <View style={styles.goBackButtonContainer}>
               <Icon.Button
                 name="left"
@@ -115,7 +115,7 @@ class CocktailsList extends React.Component<Props, State> {
           {fetchIsLoading ? (
             <ActivityIndicator
               size={Platform.OS === 'ios' ? 'large' : 60}
-              color="#ffffff"
+              color="white"
               style={styles.load}
             />
           ) : (
