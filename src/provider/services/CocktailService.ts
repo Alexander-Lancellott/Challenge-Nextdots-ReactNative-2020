@@ -9,7 +9,7 @@ export default class CocktailService {
         if (response.__ok) {
           resolve(response);
         } else {
-          reject();
+          reject({error: response});
         }
       } catch (error) {
         reject(error);
