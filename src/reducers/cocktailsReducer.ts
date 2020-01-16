@@ -4,8 +4,10 @@ import {
   GET_COCKTAILS_ERROR,
 } from '../actions/types';
 
+import {Cocktails} from '../actions';
+
 interface initialState {
-  data: object;
+  data: Cocktails[];
   fetchIsLoading: boolean;
   fetchError: string;
   inputText: string;

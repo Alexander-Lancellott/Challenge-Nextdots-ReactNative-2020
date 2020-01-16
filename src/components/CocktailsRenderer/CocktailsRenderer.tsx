@@ -5,8 +5,10 @@ import DefaultText from '../DefaultText';
 import styles from './styles';
 import SubLogo from '../SubLogo';
 
+import {Cocktails} from '../../actions';
+
 interface Props {
-  data: any;
+  data: Cocktails[];
   show: boolean;
   inputText: string;
   fetchError: string;
@@ -16,17 +18,17 @@ const CocktailsRenderer = (props: Props) => {
   if (fetchError) {
     return <DefaultText value={fetchError.toString()} />;
   }
-  if (data && show === true) {
-    if (data.drinks === null) {
+  if (show === true) {
+    if (!data) {
       return (
         <DefaultText value={`No results where found for "${inputText}"`} />
       );
     }
     return (
       <FlatList
-        data={data.drinks}
-        keyExtractor={(item: any) => item.idDrink}
-        renderItem={({item}: any) => (
+        data={data}
+        keyExtractor={(item: Cocktails) => item.idDrink}
+        renderItem={({item}: {item: Cocktails}) => (
           <View style={styles.itemContainer}>
             <Image
               resizeMode="contain"

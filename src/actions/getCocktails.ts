@@ -5,6 +5,7 @@ import {
 } from './types';
 
 import CocktailService from '../provider/services/CocktailService';
+import {Cocktails} from './dataTypes';
 
 export const getCocktailsStart = (data: string) => {
   return {
@@ -33,7 +34,15 @@ export function getCocktails(data: string, fetchIsLoading: boolean) {
       if (!fetchIsLoading) {
         dispatch(getCocktailsStart(data));
         const cocktails: any = await CocktailService.getCocktails(data);
-        dispatch(getCocktailsSuccess(cocktails));
+        dispatch(
+          getCocktailsSuccess(
+            cocktails.drinks !== null &&
+              cocktails.drinks.map(function(obj: Cocktails) {
+                const {strDrink, strDrinkThumb, idDrink} = obj;
+                return {strDrink, strDrinkThumb, idDrink};
+              }),
+          ),
+        );
       }
     } catch (err) {
       dispatch(getCocktailsError(err));
