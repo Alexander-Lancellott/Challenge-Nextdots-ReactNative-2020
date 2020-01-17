@@ -34,6 +34,7 @@ const cocktailsReducer = (state = initialState, action: any) => {
       return {
         ...state,
         fetchIsLoading: false,
+        fetchError: null,
         data,
       };
     case GET_COCKTAILS_ERROR:

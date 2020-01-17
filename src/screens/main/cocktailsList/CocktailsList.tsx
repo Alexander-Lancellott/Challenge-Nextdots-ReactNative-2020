@@ -42,7 +42,7 @@ class CocktailsList extends React.Component<Props, State> {
     show: false,
   };
 
-  changeTextHandler = (val: any) => {
+  changeTextHandler = val => {
     const {getCocktails, fetchIsLoading} = this.props;
     if (val.trim().length >= 3) {
       this.setState({
