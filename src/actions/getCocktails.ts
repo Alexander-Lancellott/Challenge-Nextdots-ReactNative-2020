@@ -14,7 +14,7 @@ export const getCocktailsStart = (data: string) => {
   };
 };
 
-export const getCocktailsSuccess = (data: object) => {
+export const getCocktailsSuccess = (data: Cocktails[]) => {
   return {
     type: GET_COCKTAILS_SUCCESS,
     data,
@@ -33,16 +33,15 @@ export function getCocktails(data: string, fetchIsLoading: boolean) {
     try {
       if (!fetchIsLoading) {
         dispatch(getCocktailsStart(data));
-        const cocktails: any = await CocktailService.getCocktails(data);
-        dispatch(
-          getCocktailsSuccess(
-            cocktails.drinks !== null &&
-              cocktails.drinks.map(function(obj: Cocktails) {
-                const {strDrink, strDrinkThumb, idDrink} = obj;
-                return {strDrink, strDrinkThumb, idDrink};
-              }),
-          ),
-        );
+        const response: any = await CocktailService.getCocktails(data);
+        let cocktails = [];
+        if (response.drinks) {
+          cocktails = response.drinks.map(drink => {
+            const {strDrink, strDrinkThumb, idDrink} = drink;
+            return {strDrink, strDrinkThumb, idDrink};
+          });
+        }
+        dispatch(getCocktailsSuccess(cocktails));
       }
     } catch (err) {
       dispatch(getCocktailsError(err));
